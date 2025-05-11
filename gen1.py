@@ -21,9 +21,9 @@ def get_gemini_response(input_text, image):
         response = model.generate_content([image])
     return response.text
 
-# Load Lottie animations
+# Load Lottie animations with UTF-8 encoding
 def load_lottiefile(filepath: str):
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         return json.load(f)
 
 def load_lottieurl(url: str):
@@ -82,9 +82,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load animations
-lottie_intro = load_lottieurl("https://lottie.host/4a9c4bed-592d-44c5-961c-c1bae9e8474a/OqhE1lQo6r.lottie")
 lottie_coding = load_lottiefile("coding.json")
 lottie_spinner = load_lottiefile("spinner.json")
+lottie_balloon = load_lottiefile("balloon.json")
 
 # App title and subtitle
 st.title("GEN Vision AI Assistant")
@@ -111,7 +111,7 @@ if submit:
     with placeholder.container():
         if lottie_spinner:
             st_lottie(lottie_spinner, speed=0.5, loop=True, height=200, key="loading_spinner")
-            st.markdown("<h5 style='text-align: center;'>Ideas Catching Fire... 🔥</h5>", unsafe_allow_html=True)
+            st.markdown("<h5 style='text-align: center;'>Ideas Catching Fire... 🚀🚀</h5>", unsafe_allow_html=True)
         else:
             st.info("Generating response...")
 
@@ -122,7 +122,11 @@ if submit:
     placeholder.empty()
 
     # Display response
-    st.markdown("### The Response is:")
+    if lottie_balloon:
+        st_lottie(lottie_balloon, speed=1.5, loop=False, height=100, width=100, key="balloon_animation_success")
+    st.markdown("### The Response is 🔥: ")
+    # if lottie_balloon:
+    #     st_lottie(lottie_balloon, speed=1.5, loop=False, height=100, width=100, key="balloon_animation_success")
     st.markdown(
         f"""
         <div style="background-color: #6EF5FC; padding: 15px; border-radius: 10px; font-size: 16px;">
@@ -131,3 +135,7 @@ if submit:
         """,
         unsafe_allow_html=True
     )
+
+    # Show balloon animation on success
+    # if lottie_balloon:
+    #     st_lottie(lottie_balloon, speed=1, loop=False, height=200, width=200, key="balloon_animation_success")
