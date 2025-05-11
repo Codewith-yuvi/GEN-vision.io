@@ -125,7 +125,7 @@ if submit:
     st.markdown("### The Response is:")
     st.markdown(
         f"""
-        <div style="background-color: #41F2F9; padding: 15px; border-radius: 10px; font-size: 16px;">
+        <div style="background-color: #6EF5FC; padding: 15px; border-radius: 10px; font-size: 16px;">
             {cleaned_response}
         </div>
         """,
