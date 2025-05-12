@@ -4,6 +4,3 @@ python-dotenv
 pypi-json
 requests
 streamlit-lottie
-standard-aifc
-SpeechRecognition
-pyaudio
