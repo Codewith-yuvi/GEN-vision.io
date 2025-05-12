@@ -40,42 +40,16 @@ def load_lottiefile(filepath: str):
 st.set_page_config(page_title="GEN Vision AI Assistant")
 
 # Load animations
-lottie_bg = load_lottiefile("bg_animation.json")
-lottie_intro = load_lottiefile("intro.json")
 lottie_coding = load_lottiefile("coding.json")
 lottie_spinner = load_lottiefile("spinner.json")
 lottie_balloon = load_lottiefile("balloon.json")
 
-# Display background Lottie animation
-if lottie_bg:
-    st.markdown("""
-        <style>
-        .lottie-bg-container {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            opacity: 0.3;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        </style>
-        <div class="lottie-bg-container">
-    """, unsafe_allow_html=True)
-    st_lottie(lottie_bg, speed=1, loop=True, height=900, width=1600, key="background", quality="high")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-# Title and intro animations
+# Title and animations
 st.title("GEN Vision AI Assistant")
 st.subheader("See the better future with GEN-Vision")
 
 if lottie_coding:
     st_lottie(lottie_coding, speed=0.1, loop=True, height=100, width=100, key="coding_lottie")
-
-if lottie_intro:
-    st_lottie(lottie_intro, key="intro_animation")
 
 # Styling
 st.markdown("""
@@ -149,6 +123,6 @@ if submit:
         unsafe_allow_html=True
     )
 
-    # Show balloon animation after success
+    # Show balloon animation on success
     if lottie_balloon:
-        st_lottie(lottie_balloon, speed=1, loop=False, height=200, width=200, key="balloon_animation")
+        st_lottie(lottie_balloon, speed=1, loop=False, height=200, width=200, key="balloon_animation_success")
