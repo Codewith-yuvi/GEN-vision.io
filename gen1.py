@@ -130,10 +130,10 @@ if submit:
     placeholder.empty()
 
     # Display response
-     if lottie_balloon:
-        st.markdown('<div class="balloon-container">', unsafe_allow_html=True)  # Open the container div
-        st_lottie(lottie_balloon, speed=1, loop=False, height=100, width=100, key="balloon_animation_success")
-        st.markdown('</div>', unsafe_allow_html=True)  # Close the container div
+if lottie_balloon:
+    st.markdown('<div class="balloon-container">', unsafe_allow_html=True)  # Open the container div
+    st_lottie(lottie_balloon, speed=1, loop=False, height=100, width=100, key="balloon_animation_success")
+    st.markdown('</div>', unsafe_allow_html=True)  # Close the container div
     st.markdown("### The Response is:")
     st.markdown(
         f"""
