@@ -21,9 +21,9 @@ def get_gemini_response(input_text, image):
         response = model.generate_content([image])
     return response.text
 
-# Load Lottie animations with UTF-8 encoding
+# Load Lottie animations
 def load_lottiefile(filepath: str):
-    with open(filepath, "r", encoding="utf-8") as f:
+    with open(filepath, "r") as f:
         return json.load(f)
 
 def load_lottieurl(url: str):
@@ -78,6 +78,14 @@ st.markdown("""
         background-color: #E501FF;
         color: white;
     }
+
+    /* Centering and ensuring the balloon animation appears below */
+    .balloon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px; /* Add some space from the content */
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -122,11 +130,7 @@ if submit:
     placeholder.empty()
 
     # Display response
-    if lottie_balloon:
-        st_lottie(lottie_balloon, speed=1.5, loop=False, height=100, width=100, key="balloon_animation_success")
     st.markdown("### The Response is:")
-    # if lottie_balloon:
-    #     st_lottie(lottie_balloon, speed=1.5, loop=False, height=100, width=100, key="balloon_animation_success")
     st.markdown(
         f"""
         <div style="background-color: #6EF5FC; padding: 15px; border-radius: 10px; font-size: 16px;">
@@ -136,6 +140,8 @@ if submit:
         unsafe_allow_html=True
     )
 
-    # Show balloon animation on success
-    # if lottie_balloon:
-    #     st_lottie(lottie_balloon, speed=1, loop=False, height=200, width=200, key="balloon_animation_success")
+    # Show balloon animation on success (now positioned below the response)
+    if lottie_balloon:
+        st.markdown('<div class="balloon-container">', unsafe_allow_html=True)  # Open the container div
+        st_lottie(lottie_balloon, speed=1, loop=False, height=200, width=200, key="balloon_animation_success")
+        st.markdown('</div>', unsafe_allow_html=True)  # Close the container div
